@@ -5,22 +5,32 @@
 #include <iostream>
 #include <functional>
 
-std::function<double(double)> Fn(int n, std::function<double(double)> f) {
-    if (n == 0) {
-        return [](double x) { return x; };
-    } else {
-        auto g = Fn(n-1, f);
-        return [=](double x) { return f(g(x)); };
+std::function<double(double)> Fn(int n, std::function<double(double)> f)
+{
+    if (n == 0)
+    {
+        return [](double x)
+        { return x; };
+    }
+    else
+    {
+        auto g = Fn(n - 1, f);
+        return [=](double x)
+        { return f(g(x)); };
     }
 }
-    
-int main() {
-    auto pow = [](double x) { return x * x; };   // 二乗する関数 pow
-    auto add = [](double x) { return x + 1; };   // 1加算する関数 add
+
+int main()
+{
+    auto pow = [](double x)
+    { return x * x; }; // 二乗する関数 pow
+    auto add = [](double x)
+    { return x + 1; }; // 1加算する関数 add
+    auto mul = [](double x)
+    { return x * 2; }; // 倍にする関数 mul
 
     std::cout << "「3を二乗」を2回適用：" << Fn(2, pow)(3) << std::endl;
     std::cout << "「3に1加算」を5回適用：" << Fn(5, add)(3) << std::endl;
 
     return 0;
 }
-
