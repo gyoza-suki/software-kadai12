@@ -31,6 +31,7 @@ int main()
 
     std::cout << "「3を二乗」を2回適用：" << Fn(2, pow)(3) << std::endl;
     std::cout << "「3に1加算」を5回適用：" << Fn(5, add)(3) << std::endl;
+    std::cout << "「3を2倍」を2回適用：" << Fn(2, mul)(3) << std::endl;
 
     return 0;
 }
